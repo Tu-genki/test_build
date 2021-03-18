@@ -4,12 +4,18 @@ files:
   - source: /
     destination: /home/ubuntu/source/
 hooks:
+
   BeforeInstall:
-    - location: scripts/install_dependencies
-      time out: 300
+    - location: scripts/before_install.sh
+      timeout: 300
       runas: root
-    - location: scripts/start_server
-      time out: 300
+  
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 300
       runas: root
-    
-     
+
+  ApplicationStart:
+    - location: scripts/app_start.sh
+      timeout: 300
+      runas: root
